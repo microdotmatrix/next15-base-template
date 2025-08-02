@@ -1,6 +1,7 @@
 import { AppContext } from "@/components/context";
+import { Header } from "@/components/layout/header";
 import { meta } from "@/lib/config";
-import { days_one, questrial, space_mono } from "@/lib/fonts";
+import { code, display, text } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
@@ -34,13 +35,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          days_one.variable,
-          questrial.variable,
-          space_mono.variable,
+          display.variable,
+          text.variable,
+          code.variable,
           "antialiased"
         )}
       >
-        <AppContext>{children}</AppContext>
+        <AppContext>
+          <Header />
+          {children}
+        </AppContext>
       </body>
     </html>
   );
