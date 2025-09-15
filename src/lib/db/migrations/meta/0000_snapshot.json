@@ -1,11 +1,11 @@
 {
-  "id": "2cf350e3-97d1-4bda-933d-f6638f952e42",
+  "id": "f9bed6cf-5202-4336-947e-bc00e3958d24",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.post": {
-      "name": "post",
+    "public.template_post": {
+      "name": "template_post",
       "schema": "",
       "columns": {
         "id": {

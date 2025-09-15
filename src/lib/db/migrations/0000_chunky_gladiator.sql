@@ -1,4 +1,4 @@
-CREATE TABLE "post" (
+CREATE TABLE "template_post" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"title" text NOT NULL,
 	"content" text NOT NULL,

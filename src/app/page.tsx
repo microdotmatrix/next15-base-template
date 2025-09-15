@@ -8,6 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { getPosts } from "@/lib/db/queries";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -32,6 +34,11 @@ export default function Home() {
               <Input type="email" placeholder="Enter your email" />
               <Button type="submit">Submit</Button>
             </form>
+            <div className="mt-8">
+              <Suspense fallback={<div>Loading...</div>}>
+                <PostList />
+              </Suspense>
+            </div>
           </div>
           <div className="grid auto-rows-min gap-4 w-full">
             <h3>Other</h3>
@@ -61,3 +68,21 @@ export default function Home() {
     </main>
   );
 }
+
+const PostList = async () => {
+  const posts = await getPosts();
+
+  return (
+    <div>
+      <h4>Posts</h4>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <h6>{post.title}</h6>
+            <p>{post.content}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};

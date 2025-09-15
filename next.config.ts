@@ -31,11 +31,6 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.placid.app",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
         hostname: "*.amazonaws.com",
         pathname: "/**",
       },
