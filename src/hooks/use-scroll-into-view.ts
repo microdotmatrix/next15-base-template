@@ -1,8 +1,8 @@
-import { RefObject, useEffect, useRef } from "react";
+import { type RefObject, useEffect, useRef } from "react";
 
 export function useScrollIntoView<T extends HTMLDivElement>(): [
   RefObject<T | null>,
-  RefObject<T | null>
+  RefObject<T | null>,
 ] {
   const containerRef = useRef<T>(null);
   const endRef = useRef<T>(null);

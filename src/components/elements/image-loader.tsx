@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import * as React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const defaultColorCombinations = [
   {
@@ -69,79 +69,79 @@ const SVGPattern = React.memo(
 
     return (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        version="1.1"
-        viewBox="0 0 100 100"
-        width="100%"
+        aria-label="Loading pattern"
         height="100%"
         preserveAspectRatio="xMidYMid slice"
         role="img"
-        aria-label="Loading pattern"
+        version="1.1"
+        viewBox="0 0 100 100"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
           <linearGradient
             gradientTransform="rotate(150, 0.5, 0.5)"
-            x1="50%"
-            y1="0%"
-            x2="50%"
-            y2="100%"
             id={gradientId}
+            x1="50%"
+            x2="50%"
+            y1="0%"
+            y2="100%"
           >
-            <stop stopColor={colors.start} stopOpacity="1" offset="0%" />
+            <stop offset="0%" stopColor={colors.start} stopOpacity="1" />
             {colors.middle && (
-              <stop stopColor={colors.middle} stopOpacity="1" offset="50%" />
+              <stop offset="50%" stopColor={colors.middle} stopOpacity="1" />
             )}
-            <stop stopColor={colors.end} stopOpacity="1" offset="100%" />
+            <stop offset="100%" stopColor={colors.end} stopOpacity="1" />
           </linearGradient>
           <filter
+            colorInterpolationFilters="sRGB"
+            filterUnits="objectBoundingBox"
+            height="140%"
             id={filterId}
+            primitiveUnits="userSpaceOnUse"
+            width="140%"
             x="-20%"
             y="-20%"
-            width="140%"
-            height="140%"
-            filterUnits="objectBoundingBox"
-            primitiveUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
           >
             <feTurbulence
-              type="fractalNoise"
               baseFrequency="0.005 0.003"
+              height="100%"
               numOctaves={2}
+              result="turbulence"
               seed={randomSeed}
               stitchTiles="stitch"
+              type="fractalNoise"
+              width="100%"
               x="0%"
               y="0%"
-              width="100%"
-              height="100%"
-              result="turbulence"
             />
             <feGaussianBlur
-              stdDeviation="20 0"
-              x="0%"
-              y="0%"
-              width="100%"
+              edgeMode="duplicate"
               height="100%"
               in="turbulence"
-              edgeMode="duplicate"
               result="blur"
-            />
-            <feBlend
-              mode="color-dodge"
+              stdDeviation="20 0"
+              width="100%"
               x="0%"
               y="0%"
-              width="100%"
+            />
+            <feBlend
               height="100%"
               in="SourceGraphic"
               in2="blur"
+              mode="color-dodge"
               result="blend"
+              width="100%"
+              x="0%"
+              y="0%"
             />
           </filter>
         </defs>
         <rect
-          width="100%"
-          height="100%"
           fill={`url(#${gradientId})`}
           filter={`url(#${filterId})`}
+          height="100%"
+          width="100%"
         />
       </svg>
     );
@@ -253,67 +253,67 @@ export function ImageLoader({
 
   return (
     <div
-      className={cn("relative overflow-hidden rounded-lg", className)}
-      style={containerStyle}
-      role="img"
       aria-label={alt}
+      className={cn("relative overflow-hidden rounded-lg", className)}
+      role="img"
+      style={containerStyle}
     >
       {!hasError && (
         <div
+          aria-hidden="true"
           className={cn(
             "absolute inset-0 transition-opacity duration-500",
             isLoaded ? "opacity-0" : "opacity-100"
           )}
           style={{ filter: blurIntensity }}
-          aria-hidden="true"
         >
           <SVGPattern
             colors={patternData.colors}
-            uniqueId={patternData.uniqueId}
             randomSeed={patternData.randomSeed}
+            uniqueId={patternData.uniqueId}
           />
         </div>
       )}
 
       {!hasError && (
         <Image
+          alt={alt}
+          className={cn(
+            "absolute inset-0 h-full w-full transition-opacity duration-500",
+            isLoaded ? "opacity-100" : "opacity-0"
+          )}
+          decoding="async"
+          fill
+          loading={loading}
+          onError={handleError}
+          onLoad={handleLoad}
           ref={(img) => {
             if (imgRef.current) imgRef.current = img;
             handleImageRef(img);
           }}
           src={src}
-          alt={alt}
-          fill
-          onLoad={handleLoad}
-          onError={handleError}
-          className={cn(
-            "absolute inset-0 w-full h-full transition-opacity duration-500",
-            isLoaded ? "opacity-100" : "opacity-0"
-          )}
           style={{ objectFit }}
-          loading={loading}
-          decoding="async"
         />
       )}
 
       {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted z-10">
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-muted">
           {fallbackComponent ? (
             fallbackComponent
           ) : (
             <div className="text-center text-muted-foreground">
               <svg
-                className="mx-auto h-12 w-12 mb-2"
+                aria-hidden="true"
+                className="mx-auto mb-2 h-12 w-12"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-                aria-hidden="true"
               >
                 <path
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                 />
               </svg>
               <p className="text-sm">Failed to load image</p>

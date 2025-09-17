@@ -1,9 +1,9 @@
+import type { Metadata, Viewport } from "next";
 import { AppContext } from "@/components/context";
 import { Header } from "@/components/layout/header";
 import { meta } from "@/lib/config";
 import { code, display, text } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
       <body
         className={cn(
           display.variable,

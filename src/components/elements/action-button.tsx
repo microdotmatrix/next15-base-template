@@ -1,5 +1,7 @@
 "use client";
 
+import { type ComponentPropsWithRef, useTransition } from "react";
+import { toast } from "sonner";
 import { LoadingSwap } from "@/components/elements/loading-swap";
 import {
   AlertDialog,
@@ -13,8 +15,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { ComponentPropsWithRef, useTransition } from "react";
-import { toast } from "sonner";
 
 export function ActionButton({
   action,
@@ -64,8 +64,8 @@ export function ActionButton({
   return (
     <Button {...props} disabled={isLoading} onClick={performAction}>
       <LoadingSwap
-        isLoading={isLoading}
         className="inline-flex items-center gap-2"
+        isLoading={isLoading}
       >
         {props.children}
       </LoadingSwap>

@@ -50,13 +50,13 @@ export function TransitionButtonLink({
 }: TransitionLinkProps) {
   return (
     <TransitionLink
-      type={type}
       className={clsx(
-        "flex w-fit items-center gap-1 rounded-md bg-gray-700 px-3 py-1 text-sm font-medium text-gray-100 hover:bg-gray-500 hover:text-white",
+        "flex w-fit items-center gap-1 rounded-md bg-gray-700 px-3 py-1 font-medium text-gray-100 text-sm hover:bg-gray-500 hover:text-white",
         className,
         type === "transition-backwards" && "pl-1.5",
         type === "transition-forwards" && "pr-1.5"
       )}
+      type={type}
       {...props}
     >
       {type === "transition-backwards" && (

@@ -4,10 +4,10 @@ import { Icon } from "../ui/icon";
 
 export const Header = () => {
   return (
-    <header className="sticky top-0 mt-4 z-50 w-full flex justify-between items-center px-4">
+    <header className="sticky top-0 z-50 mt-4 flex w-full items-center justify-between px-4">
       <section>
         <Link href="/">
-          <Icon icon="simple-icons:nextdotjs" className="size-8" />
+          <Icon className="size-8" icon="simple-icons:nextdotjs" />
         </Link>
       </section>
       <section>

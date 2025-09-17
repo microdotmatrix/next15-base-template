@@ -1,11 +1,11 @@
 "use client";
 
+import { useTheme } from "next-themes";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { useMetaColor } from "@/hooks/use-meta-color";
 import { meta } from "@/lib/config";
-import { useTheme } from "next-themes";
-import { useCallback, useEffect, useState } from "react";
 
 export const ThemeToggle = ({ iconSize = "size-5" }: { iconSize?: string }) => {
   const [mounted, setMounted] = useState(false);
@@ -27,22 +27,22 @@ export const ThemeToggle = ({ iconSize = "size-5" }: { iconSize?: string }) => {
 
   return (
     <Button
-      variant="outline"
-      size="icon"
-      onClick={toggleTheme}
       aria-label="Toggle theme"
+      onClick={toggleTheme}
+      size="icon"
+      variant="outline"
     >
       {resolvedTheme === "light" ? (
         <Icon
-          key={resolvedTheme}
-          icon="line-md:moon-to-sunny-outline-loop-transition"
           className={iconSize}
+          icon="line-md:moon-to-sunny-outline-loop-transition"
+          key={resolvedTheme}
         />
       ) : (
         <Icon
-          key={resolvedTheme}
-          icon="line-md:sunny-outline-to-moon-loop-transition"
           className={iconSize}
+          icon="line-md:sunny-outline-to-moon-loop-transition"
+          key={resolvedTheme}
         />
       )}
     </Button>

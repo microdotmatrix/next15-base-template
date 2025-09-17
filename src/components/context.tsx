@@ -6,7 +6,7 @@ export const AppContext = ({ children }: { children: React.ReactNode }) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       {children}
-      <Toaster position="bottom-right" closeButton />
+      <Toaster closeButton position="bottom-right" />
       <ViewportSize />
     </ThemeProvider>
   );

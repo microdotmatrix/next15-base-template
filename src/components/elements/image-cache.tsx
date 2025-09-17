@@ -1,8 +1,8 @@
 "use client";
 
-import { LazyImageLoader, useImageCache } from "@/hooks/use-image";
 import { AlertCircle, ImageIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { LazyImageLoader, useImageCache } from "@/hooks/use-image";
 
 interface CachedImageProps {
   src: string;
@@ -40,12 +40,12 @@ export function CachedImage({
   if (error || imageError) {
     return (
       <div
-        className={`flex items-center justify-center bg-muted border border-border rounded ${className}`}
+        className={`flex items-center justify-center rounded border border-border bg-muted ${className}`}
         style={{ width, height }}
       >
-        <div className="text-center p-4">
-          <AlertCircle className="w-6 h-6 text-muted-foreground mx-auto mb-2" />
-          <p className="text-xs text-muted-foreground">Failed to load image</p>
+        <div className="p-4 text-center">
+          <AlertCircle className="mx-auto mb-2 h-6 w-6 text-muted-foreground" />
+          <p className="text-muted-foreground text-xs">Failed to load image</p>
         </div>
       </div>
     );
@@ -54,24 +54,24 @@ export function CachedImage({
   if (loading) {
     return (
       <div
-        className={`flex items-center justify-center bg-muted border border-border rounded animate-pulse ${className}`}
+        className={`flex animate-pulse items-center justify-center rounded border border-border bg-muted ${className}`}
         style={{ width, height }}
       >
-        <ImageIcon className="w-6 h-6 text-muted-foreground" />
+        <ImageIcon className="h-6 w-6 text-muted-foreground" />
       </div>
     );
   }
 
   return (
     <img
-      src={cachedSrc}
       alt={alt}
       className={className}
-      width={width}
       height={height}
-      onLoad={handleLoad}
-      onError={handleError}
       loading={priority}
+      onError={handleError}
+      onLoad={handleLoad}
+      src={cachedSrc}
+      width={width}
     />
   );
 }
@@ -129,14 +129,14 @@ export function LazyImage({
 
   return (
     <img
-      ref={imgRef}
-      src={placeholder}
       alt={alt}
       className={`lazy-image ${className} ${isLoaded ? "loaded" : ""} ${
         hasError ? "error" : ""
       }`}
-      onLoad={handleLoad}
       onError={handleError}
+      onLoad={handleLoad}
+      ref={imgRef}
+      src={placeholder}
       style={{
         transition: "opacity 0.3s ease-in-out",
         opacity: isLoaded ? 1 : 0.7,

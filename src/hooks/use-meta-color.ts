@@ -1,8 +1,8 @@
 "use client";
 
-import { meta } from "@/lib/config";
 import { useTheme } from "next-themes";
 import { useCallback, useMemo } from "react";
+import { meta } from "@/lib/config";
 
 export function useMetaColor() {
   const { resolvedTheme } = useTheme();
