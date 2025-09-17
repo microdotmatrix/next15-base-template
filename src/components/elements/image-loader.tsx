@@ -283,6 +283,7 @@ export function ImageLoader({
           }}
           src={src}
           alt={alt}
+          fill
           onLoad={handleLoad}
           onError={handleError}
           className={cn(

@@ -12,6 +12,7 @@ interface CachedImageProps {
   height?: number;
   onLoad?: () => void;
   onError?: () => void;
+  priority?: "lazy" | "eager";
 }
 
 export function CachedImage({
@@ -22,6 +23,7 @@ export function CachedImage({
   height,
   onLoad,
   onError,
+  priority = "lazy",
 }: CachedImageProps) {
   const { src: cachedSrc, loading, error } = useImageCache(src);
   const [imageError, setImageError] = useState(false);
@@ -69,7 +71,7 @@ export function CachedImage({
       height={height}
       onLoad={handleLoad}
       onError={handleError}
-      loading="lazy"
+      loading={priority}
     />
   );
 }
